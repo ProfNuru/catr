@@ -67,9 +67,22 @@ pub fn run(config:Config)->MyResult<()>{
                 code += 1;
             },
             Ok(file) => {
-                for line_result in file.lines(){
+                let mut last_num = 0;
+                for (line_num, line_result) in file.lines().enumerate(){
                     let line = line_result?;
-                    println!("{}",line);
+                    
+                    if config.number_lines{
+                        println!("{:>6}\t{}",line_num+1, line);
+                    }else if config.number_nonblank_lines{
+                        if line.len() > 0{
+                            last_num += 1;
+                            println!("{:>6}\t{}",last_num, line);
+                        }else{
+                            println!("{}",line);
+                        }
+                    }else{
+                        println!("{}",line);
+                    }
                 }
             },
         }

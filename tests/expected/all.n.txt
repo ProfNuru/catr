@@ -1,13 +1,13 @@
      1	The quick brown fox jumps over the lazy dog
-     2	First line
-     3	Second line
-     4	Third line
-     5	The Bustle in a House
-     6	The Morning after Death
-     7	Is solemnest of industries
-     8	Enacted upon Earth—
-     9	
-    10	The Sweeping up the Heart
-    11	And putting Love away
-    12	We shall not want to use again
-    13	Until Eternity.
+     1	First line
+     2	Second line
+     3	Third line
+     1	The Bustle in a House
+     2	The Morning after Death
+     3	Is solemnest of industries
+     4	Enacted upon Earth—
+     5	
+     6	The Sweeping up the Heart
+     7	And putting Love away
+     8	We shall not want to use again
+     9	Until Eternity.
