@@ -59,11 +59,23 @@ fn open(filename:&str)->MyResult<Box<dyn BufRead>>{
 }
 
 pub fn run(config:Config)->MyResult<()>{
+    let mut code = 0;
     for filename in config.files{
         match open(&filename){
-            Err(err) => eprintln!("Failed to open {}: {}",filename,err),
-            Ok(_) => println!("Opened {}", filename),
+            Err(err) => {
+                eprintln!("catr: {}: {}",filename,err);
+                code += 1;
+            },
+            Ok(file) => {
+                for line_result in file.lines(){
+                    let line = line_result?;
+                    println!("{}",line);
+                }
+            },
         }
+    }
+    if code > 0 {
+        std::process::exit(code);
     }
     Ok(())
 }

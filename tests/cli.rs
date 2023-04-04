@@ -14,18 +14,24 @@ fn run(args:&[&str], expected_file:&str)->TestResult{
     Ok(())
 }
 
-fn fail(args:&[&str])->TestResult{
+fn fail(args:&[&str], expected:&str)->TestResult{
     Command::cargo_bin("catr")?
         .args(args)
         .assert()
-        .failure();
+        .failure()
+        .stderr(predicate::str::contains(expected));
     Ok(())
 }
 
-// #[test]
-// fn skips_bad_file()->TestResult{
-//     fail(&["cant-touch-this"])
-// }
+#[test]
+fn skips_bad_file()->TestResult{
+    fail(&["cant-touch-this"], "Permission denied")
+}
+
+#[test]
+fn non_existent_file()->TestResult{
+    fail(&["file1"], "No such file")
+}
 
 #[test]
 fn empty()->TestResult{
